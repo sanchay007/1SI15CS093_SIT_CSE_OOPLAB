@@ -1,0 +1,36 @@
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+class randomint
+{
+	public:
+		randomint(int ia,int ib);
+		int operator()();
+		int operator()(int nb);
+		int operator()(int na,int nb);
+	private:
+		int a,b;
+};
+randomint::randomint(int ia,int ib):a(ia),b(ib)
+{}
+int randomint::operator()()
+{
+	return a+rand()%(b-a+1);
+}
+int randomint::operator()(int nb)
+{
+	return a+rand()%(nb-a+1);
+}
+int randomint::operator()(int na,int nb)
+{
+	return na+rand()%(nb-na+1);
+}
+int main()
+{
+	randomint r(3,7);
+	srand(time(NULL));
+	cout<<"Random value b/w 3&7 "<<r()<<endl;
+	cout<<"Random value b/w 3&10 "<<r(10)<<endl;
+	cout<<"Random value b/w 23&30 "<<r(23,30)<<endl;
+	return 0;
+}
